@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption & Decryption</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://source.unsplash.com/1600x900/?code,devloping,coder,code laptop');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            height: 90%; /* Set height to 100% of viewport height */
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Add relative positioning */
+        }
+
+        h1 {
+            color: #5c258d;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #5c258d;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .info {
+            margin-bottom: 20px;
+        }
+
+        .info ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info li {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .info p {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #5c258d;
+            color: #fff;
+            font-size: 1.2rem;
+            border-radius: 5px 5px 0 0;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .tab.active {
+            background-color: #7c3aed;
+        }
+
+        .tab-content {
+            display: none;
+            
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .method-label {
+            font-size: 1.2rem;
+            color: #333;
+            margin-right: 20px;
+        }
+
+        .method-select {
+            padding: 12px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #cbd5e0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .key-input {
+            margin-top: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #cbd5e0;
+            transition: border-color 0.3s ease;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #5c258d;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 8px;
+            background-color: #5c258d;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #7c3aed;
+        }
+
+        .output {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* display: none; */
+        }
+
+        .output-title {
+            font-size: 1.5rem;
+            color: #5c258d;
+            margin-bottom: 10px;
+        }
+
+        .suggestions {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #333;
+            display: none;
+        }
+
+        .suggestion {
+            margin-bottom: 5px;
+        }
+
+        .password-check {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .password-label {
+            font-size: 1.2rem;
+            color: #333;
+            margin-right: 20px;
+        }
+
+        .Check {
+            margin-left: 90px;
+            margin-bottom: 30px;
+        }
+
+        .password-strength {
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            min-width: 150px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .weak {
+            background-color: #ff4d4d;
+        }
+
+        .medium {
+            background-color: #ffc107;
+        }
+
+        .strong {
+            background-color: #28a745;
+        }
+
+        .key-input {
+            /* display: none; */
+            margin-top: 20px;
+        }
+
+        .profile-pic {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .round {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+    </style>
+</head>
+<body>
+    <form action="/code" method="POST">
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="functions">Functions</div>
+            <div class="tab" data-tab="about">About</div>
+        </div>
+
+        <!-- Functions content -->
+        <div class="tab-content functions active">
+            <h1>Encryption & Decryption Functions</h1>
+            <div class="method">
+                <label for="methodSelect" class="method-label">Choose Method:</label>
+                <select id="methodSelect" name="method" class="method-select">
+                    <option value="caesar">Caesar Cipher</option>
+                    <option value="polyalphabetic">Polyalphabetic Cipher</option>
+                    <option value="playfair">Playfair Cipher</option>
+                    <option value="hill">Hill Cipher</option>
+                </select>
+            </div>
+
+            <div class="key-input" id="keyInput">
+                <label for="key" class="block text-lg font-medium text-gray-700">Enter Key:</label>
+                <input type="text" id="key" name="key"  class="form-input" placeholder="Enter key...">
+            </div>
+
+            <textarea id="textInput"name="plain" class="form-input" rows="5" placeholder="Enter text..."></textarea>
+
+            <div class="password-check">
+                <label for="passwordInput" class="password-label">Enter Password:</label>
+                <input type="password" name="passw" id="passwordInput" class="form-input" placeholder="Enter password...">
+                <button id="Check" name="Check" value="Check" class="btn mt-4 Check">Check</button>
+                <div id="passwordStrength" class="password-strength"></div>
+            </div>
+
+            <button id="encryptBtn" name="enc" value="enc" class="btn mt-4">Encrypt</button>
+            <button id="decryptBtn" name="dec" value="dec" class="btn ml-4 mt-4">Decrypt</button>
+
+            <!-- Output and suggestions -->
+            <div class="output mt-8" id="output">
+                <div class="output-title">Result:</div>
+                <div id="result">{{ result }}</div>
+            </div>
+
+            <div class="suggestions mt-8" id="suggestions">
+                <div class="output-title">Password Suggestions:</div>
+                <div id="passwordSuggestions"></div>
+            </div>
+        </div>
+    </form>
+        <!-- About content -->
+        <div class="tab-content about">
+            <h1>About</h1>
+            <div id="about" class="info">
+                <h2>About</h2>
+                <ul>
+                    <li><strong>Dharmraj Sodha</strong> - Roll No: 7002</li>
+                    <li><strong>Raj Mugra</strong> - Roll No: 7005</li>
+                    <li><strong>Darshan Nikum</strong> - Roll No: 7014</li>
+                </ul>
+                <p><strong>Students of Government Polytechnic Jamnagar</strong></p>
+                <p>Semester 6, Computer Engineering</p>
+                <p>Subject: Basic Information Technology</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-pic" onclick="openNewTab()">
+        <img src="https://ugc.production.linktr.ee/dbda6cb3-8dd2-4cf7-a4d5-150d021e0ca5_bis.jpeg?io=true&size=avatar-v3_0" alt="Profile Picture" class="round">
+      </div> 
+
+    <script>
+        function openNewTab() {
+            window.open('https://linktr.ee/gpjam', '_blank');
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    tabContents.forEach(content => {
+                        if (content.classList.contains(tabId)) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
