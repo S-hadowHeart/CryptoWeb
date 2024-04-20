@@ -4,13 +4,13 @@ CryptoWeb
 CryptoWeb is a web application for encryption and decryption. It offers various cryptographic methods including Caesar Cipher, Polyalphabetic Cipher, Playfair Cipher, and Hill Cipher. Developed as part of the Basic Information Technology course by Dharmraj Sodha, Raj Mugra, and Darshan Nikum, students of Government Polytechnic Jamnagar.
 
 # Features
-Choose from multiple encryption methods
-Encrypt and decrypt text with ease
-Check password strength and suggest improvements
-Interactive user interface with responsive design
-Integration with Flask for backend functionality
-Demo
-Check out our Demo Website for a live demonstration.
+Choose from multiple encryption methods \n
+Encrypt and decrypt text with ease \n
+Check password strength and suggest improvements \n
+Interactive user interface with responsive design \n
+Integration with Flask for backend functionality \n
+Demo \n
+Check out our Demo Website for a live demonstration. \n 
 
 # Team Contact
 Explore our Linktree for more information about our team.
