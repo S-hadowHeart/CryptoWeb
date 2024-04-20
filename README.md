@@ -18,7 +18,8 @@ Explore our Linktree for more information about our team.
 ![image](https://github.com/S-hadowHeart/CryptoWeb/assets/103097446/62d64fb7-3ead-47d2-adb4-75f98cf7cc82)
 
 # Getting Started
-Clone the repository: git clone [https://github.com/S-hadowHeart/CryptoWeb]
+
+Clone the repository: git clone https://github.com/S-hadowHeart/CryptoWeb
 Install dependencies: pip install -r requirements.txt
 Run the Flask application: python app.py
 Access the application in your web browser at http://localhost:10000
