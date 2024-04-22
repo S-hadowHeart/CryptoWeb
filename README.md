@@ -10,7 +10,7 @@
 ---
 
 # About
-CryptoWeb is a web application for encryption and decryption. It offers various cryptographic methods including Caesar Cipher, Polyalphabetic Cipher, Playfair Cipher, and Hill Cipher. Developed as part of the Basic Information Technology course by Dharmraj Sodha, Raj Mugra, and Darshan Nikum, students of Government Polytechnic Jamnagar.
+CryptoWeb is a web application for encryption and decryption. It offers various cryptographic methods including Caesar Cipher, Polyalphabetic Cipher, Playfair Cipher, and Hill Cipher. Developed as part of the Basic Information Technology course by Dharmraj Sodha, Raj Mungra, and Darshan Nakum, students of Government Polytechnic Jamnagar.
 
 # Features
 - Choose from multiple encryption methods
